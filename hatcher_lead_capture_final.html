@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Video Marketing Consultation — Hatcher Interactive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1B4F8A;
+    --blue-dark: #0F3060;
+    --blue-light: #D5E8F0;
+    --accent: #E8A020;
+    --dark: #0D0D14;
+    --text: #1A1A2E;
+    --muted: #666680;
+    --white: #FFFFFF;
+    --bg: #F4F6FB;
+    --card: #FFFFFF;
+    --border: #E0E4EF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 24px 100px;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(27,79,138,0.5) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(60% 100% at 50% 100%);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .brand-dot {
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 10vw, 88px);
+    line-height: 0.95;
+    color: var(--white);
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+
+  .hero-title span {
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.3s forwards;
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.4s forwards;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* FORM SECTION */
+  .form-section {
+    max-width: 560px;
+    margin: -20px auto 0;
+    padding: 0 20px 80px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .form-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow: 0 20px 60px rgba(27,79,138,0.12), 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+
+  .form-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--blue);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .form-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: var(--bg);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+  }
+
+  .field input:focus,
+  .field select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(27,79,138,0.1);
+    background: var(--white);
+  }
+
+  .field input::placeholder { color: #AABBD0; }
+
+  .select-wrap {
+    position: relative;
+  }
+
+  .select-wrap::after {
+    content: '▾';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--blue);
+    pointer-events: none;
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover { background: var(--blue-dark); }
+  .submit-btn:active { transform: scale(0.99); }
+
+  .form-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* SUCCESS STATE */
+  .success-card {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .success-icon {
+    width: 64px; height: 64px;
+    background: #E8F5E9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+  }
+
+  .success-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--blue);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .success-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* SOCIAL PROOF */
+  .proof-section {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .proof-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px 16px;
+    border: 1px solid var(--border);
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.8s forwards;
+  }
+
+  .proof-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--blue);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .proof-label {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .footer strong {
+    color: var(--blue);
+    font-weight: 600;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MOBILE */
+  @media (max-width: 480px) {
+    .form-card { padding: 28px 20px; }
+    .proof-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .proof-card { padding: 16px 10px; }
+    .proof-number { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="brand">
+    <div class="brand-dot"></div>
+    <div class="brand-name">HATCHER INTERACTIVE</div>
+  </div>
+  <p class="hero-eyebrow">Free Consultation</p>
+  <h1 class="hero-title">Grow Your<br>Business With<br><span>Video</span></h1>
+  <p class="hero-sub">We build video marketing systems that generate leads — from the customers searching for you and the referral partners who can send them your way.</p>
+  <div class="hero-badges">
+    <span class="badge"><span class="badge-dot"></span>90-Day Campaigns</span>
+    <span class="badge"><span class="badge-dot"></span>Lead Tracking Built In</span>
+    <span class="badge"><span class="badge-dot"></span>Colorado Based</span>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-section">
+  <div class="form-card">
+
+    <div id="form-content">
+      <p class="form-title">Let's Talk</p>
+      <p class="form-sub">Fill out the form below and we'll reach out within 24 hours to schedule your free video marketing consultation.</p>
+
+      <form id="lead-form">
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(720) 555-0000">
+        </div>
+
+        <div class="field">
+          <label for="source">How Did You Find Us?</label>
+          <div class="select-wrap">
+            <select id="source" name="source">
+              <option value="" disabled selected>Select a platform</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Facebook">Facebook</option>
+              <option value="YouTube">YouTube</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Request Free Consultation</button>
+        <p class="form-note">No spam. No pressure. Just a straight conversation about what video marketing can do for your business.</p>
+      </form>
+    </div>
+
+    <div class="success-card" id="success-card">
+      <div class="success-icon">✓</div>
+      <p class="success-title">You're In</p>
+      <p class="success-body">We received your request and will be in touch within 24 hours at the email you provided. Talk soon.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROOF -->
+<div class="proof-section">
+  <div class="proof-grid">
+    <div class="proof-card">
+      <div class="proof-number">90</div>
+      <div class="proof-label">Day Campaign Commitment</div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-number">3X</div>
+      <div class="proof-label">Platform Posting Weekly</div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-number">CO</div>
+      <div class="proof-label">Colorado Based & Built</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Hatcher Interactive</strong> — Video Marketing Agency<br>
+  Highlands Ranch, Colorado &nbsp;·&nbsp; maurice@imahatcher.com
+</div>
+
+<script>
+  // ── UTM DETECTION ──────────────────────────────────────────────────────────
+  function getUTMParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      utm_source:   params.get('utm_source')   || 'direct',
+      utm_medium:   params.get('utm_medium')   || 'none',
+      utm_campaign: params.get('utm_campaign') || 'none',
+      utm_content:  params.get('utm_content')  || 'none',
+    };
+  }
+
+  // ── FORM SUBMIT ────────────────────────────────────────────────────────────
+  document.getElementById('lead-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = 'SENDING...';
+    btn.disabled = true;
+
+    const utm = getUTMParams();
+
+    const payload = {
+      name:         document.getElementById('name').value.trim(),
+      email:        document.getElementById('email').value.trim(),
+      phone:        document.getElementById('phone').value.trim(),
+      source:       document.getElementById('source').value || 'Not specified',
+      utm_source:   utm.utm_source,
+      utm_medium:   utm.utm_medium,
+      utm_campaign: utm.utm_campaign,
+      utm_content:  utm.utm_content,
+      timestamp:    new Date().toLocaleString('en-US', { timeZone: 'America/Denver' }),
+      page_url:     window.location.href,
+    };
+
+    try {
+      // ── REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL ──
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxC-eKtVv5svQeGMupichIQ7jZygNj5ct_-z9B2oeqMOW9qWuk5K71n_eGGBOVUkgI1/exec';
+
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      // Show success regardless (no-cors means we can't read response)
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('success-card').style.display = 'block';
+
+    } catch (err) {
+      btn.textContent = 'REQUEST FREE CONSULTATION';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly at maurice@imahatcher.com');
+    }
+  });
+</script>
+
+</body>
+</html>
